@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Domain\Repositories\PostRepository;
+use App\Infrastructure\Persistence\EloquentPostRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // PostRepositoryインターフェースをEloquentPostRepositoryにバインド
+        $this->app->bind(PostRepository::class, EloquentPostRepository::class);
     }
 
     /**
